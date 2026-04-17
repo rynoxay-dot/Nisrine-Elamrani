@@ -736,6 +736,71 @@
     grid-template-columns: 1fr;
   }
 }
+
+    /* ── TESTIMONIALS INFINITE SCROLL ── */
+#testimonials {
+  padding: 7rem 0; /* On enlève le padding latéral pour le scroll plein écran */
+  overflow: hidden;
+}
+
+.testimonials-container {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+/* Les masques dégradés sur les côtés */
+.testimonials-container::before,
+.testimonials-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.testimonials-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+
+.testimonials-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+
+.testimonials-track {
+  display: flex;
+  width: max-content;
+  gap: 2rem;
+  animation: scrollInfinite 40s linear infinite;
+}
+
+/* Pause au survol */
+.testimonials-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollInfinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 1rem)); } /* On défile la moitié du contenu total */
+}
+
+.testimonial-card {
+  width: 450px; /* Largeur fixe pour chaque carte */
+  padding: 3rem;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .testimonial-card { width: 300px; padding: 2rem; }
+}
   </style>
 </head>
 <body>
@@ -955,32 +1020,48 @@
 </section>
 
   <section id="testimonials">
-  <div class="section-header reveal">
+  <div class="section-header reveal" style="padding: 0 3rem;">
     <span class="section-num">04</span>
     <h2 class="section-title">Recommandations</h2>
     <div class="section-line"></div>
   </div>
   
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <div class="quote-icon">“</div>
-      <p class="testimonial-text">
-        Nisrine fait preuve d'une rigueur exemplaire dans ses analyses de laboratoire. Sa capacité à interpréter les protocoles de traitement des eaux est un atout majeur pour ses futurs projets professionnels.
-      </p>
-      <div class="testimonial-author">
-        <span class="author-name">Dr. Ahmed Alaoui</span>
-        <span class="author-role">Professeur Chercheur — EST Salé</span>
+  <div class="testimonials-container">
+    <div class="testimonials-track">
+      <div class="testimonial-card">
+        <div class="quote-icon">“</div>
+        <p class="testimonial-text">Nisrine fait preuve d'une rigueur exemplaire dans ses analyses de laboratoire. Sa capacité à interpréter les protocoles est un atout majeur.</p>
+        <div class="testimonial-author">
+          <span class="author-name">Dr. Ahmed Alaoui</span>
+          <span class="author-role">Professeur Chercheur — EST Salé</span>
+        </div>
       </div>
-    </div>
 
-    <div class="testimonial-card reveal reveal-delay-1">
-      <div class="quote-icon">“</div>
-      <p class="testimonial-text">
-        Une étudiante très investie lors des travaux dirigés. Son approche des problématiques environnementales et sa maîtrise des normes de qualité de l'eau sont très prometteuses.
-      </p>
-      <div class="testimonial-author">
-        <span class="author-name">Mme. Karima Bensouda</span>
-        <span class="author-role">Responsable Laboratoire — Analyse Eau & Environnement</span>
+      <div class="testimonial-card">
+        <div class="quote-icon">“</div>
+        <p class="testimonial-text">Une étudiante très investie. Son approche des problématiques environnementales et sa maîtrise des normes sont très prometteuses.</p>
+        <div class="testimonial-author">
+          <span class="author-name">Mme. Karima Bensouda</span>
+          <span class="author-role">Responsable Laboratoire — ETE</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="quote-icon">“</div>
+        <p class="testimonial-text">Nisrine fait preuve d'une rigueur exemplaire dans ses analyses de laboratoire. Sa capacité à interpréter les protocoles est un atout majeur.</p>
+        <div class="testimonial-author">
+          <span class="author-name">Dr. Ahmed Alaoui</span>
+          <span class="author-role">Professeur Chercheur — EST Salé</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="quote-icon">“</div>
+        <p class="testimonial-text">Une étudiante très investie. Son approche des problématiques environnementales et sa maîtrise des normes sont très prometteuses.</p>
+        <div class="testimonial-author">
+          <span class="author-name">Mme. Karima Bensouda</span>
+          <span class="author-role">Responsable Laboratoire — ETE</span>
+        </div>
       </div>
     </div>
   </div>
